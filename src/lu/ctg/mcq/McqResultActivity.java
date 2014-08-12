@@ -1,6 +1,5 @@
 package lu.ctg.mcq;
 
-import lu.ctg.db29.R;
 import lu.ctg.mcq.model.McqStage;
 import lu.ctg.mcq.model.McqStageBrowser;
 import android.app.Activity;

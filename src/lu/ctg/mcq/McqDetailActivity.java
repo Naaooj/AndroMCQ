@@ -2,10 +2,9 @@ package lu.ctg.mcq;
 
 import java.util.List;
 
-import lu.ctg.db29.R;
 import lu.ctg.mcq.model.McqStageBrowser;
-import lu.ctg.mcq.model.Option;
 import lu.ctg.mcq.model.McqStageBrowser.AnswerResult;
+import lu.ctg.mcq.model.Option;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;

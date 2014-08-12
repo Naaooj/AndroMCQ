@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="lu.ctg.db29"
+    package="lu.ctg.mcq"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -15,8 +15,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="lu.ctg.mcq.MainActivity"
-            android:label="@string/title_activity_main" >
-            <intent-filter>
+            android:label="@string/app_name" >
+            <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,7 +26,7 @@
             android:name="lu.ctg.mcq.McqActivity"
             android:label="@string/title_activity_mcq" >
             <intent-filter>
-                <action android:name="lu.ctg.db29.MCQ_ACTIVITY" />
+                <action android:name="lu.ctg.mcq.MCQ_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

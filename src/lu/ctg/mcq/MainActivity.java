@@ -11,7 +11,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
-import lu.ctg.db29.R;
 import lu.ctg.mcq.MultiSpinner.MultiSpinnerListener;
 import lu.ctg.mcq.model.McqStage;
 import lu.ctg.mcq.model.Question;
@@ -26,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -111,6 +111,8 @@ public class MainActivity extends Activity implements MultiSpinnerListener {
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 			super.onViewCreated(view, savedInstanceState);
+			
+			getActivity().getActionBar().setTitle(getString(R.string.title_activity_main));
 			
 			MultiSpinner spinner = (MultiSpinner) getActivity().findViewById(R.id.groupSpinner);
 			if (spinner != null) {

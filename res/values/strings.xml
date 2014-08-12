@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DB29</string>
+    <string name="app_name">AndroMCQ</string>
     <string name="press_to_quit">Presser une nouvelle fois pour quitter</string>
     <string name="title_activity_main">Accueil</string>
     <string name="action_settings">Options</string>

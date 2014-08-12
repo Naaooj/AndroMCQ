@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="lu.ctg.db29.McqDetailActivity" >
+    tools:context="lu.ctg.mcq.McqDetailActivity" >
 
     <item
         android:id="@+id/actionPrevDetail"
