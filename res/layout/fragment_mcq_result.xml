@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="lu.ctg.mcq.McqResultActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_mcq_result" />
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal"
+	    android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/buttonDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:onClick="browseDetails"
+            android:text="@string/mcq_result_details"
+            android:background="@drawable/mcq_button"
+            style="@style/mcq_button_style"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp" />
+
+        <Button
+            android:id="@+id/buttonNew"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:onClick="goToHome"
+            android:text="@string/mcq_go_to_home"
+            android:background="@drawable/mcq_button"
+            style="@style/mcq_button_style" />
+    </LinearLayout>
+
+</LinearLayout>

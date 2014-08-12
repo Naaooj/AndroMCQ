@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DB29</string>
+    <string name="press_to_quit">Presser une nouvelle fois pour quitter</string>
+    <string name="title_activity_main">Accueil</string>
+    <string name="action_settings">Options</string>
+    <string name="main_choose_group">Groupe</string>
+    <string name="main_choose_nbr_questions">Nombre de questions</string>
+    <string name="main_choose_shuffle">Aléatoire</string>
+    <string name="main_start_button">Commencer</string>
+    <string name="title_activity_mcq">Question</string>
+    <string name="mcq_detail_group_question">Question</string>
+    <string name="mcq_detail_group_answer">Réponses</string>
+    <string name="mcq_button_prev">Précédent</string>
+    <string name="mcq_button_next">Suivant</string>
+    <string name="mcq_button_finish">Terminer</string>
+    <string name="main_all_loaded">Toutes les questions sont chargées</string>
+    <string name="title_activity_mcq_result">Résultats</string>
+    <string name="mcq_result_score">Score obtenu : </string>
+    <string name="mcq_result_details">Détail</string>
+    <string name="mcq_go_to_home">Accueil</string>
+    <string name="title_activity_mcq_detail">Détails</string>
+    
+    <string name="mcq_groups_all">Tous</string>
+    
+    <string-array name="mcq_groups">
+        <item>Chapitre 2</item>
+        <item>Chapitre 3</item>
+        <item>Chapitre 4</item>
+        <item>Chapitre 5</item>
+        <item>Chapitre 6</item>
+        <item>Chapitre 7</item>
+    </string-array>
+    
+</resources>

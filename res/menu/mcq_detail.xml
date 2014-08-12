@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="lu.ctg.db29.McqDetailActivity" >
+
+    <item
+        android:id="@+id/actionPrevDetail"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/mcq_button_prev"
+        android:icon="@drawable/back" />
+	<item
+        android:id="@+id/actionNextDetail"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/mcq_button_next"
+        android:icon="@drawable/next" />
+</menu>
