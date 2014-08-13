@@ -1,5 +1,6 @@
 package lu.ctg.mcq;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lu.ctg.mcq.model.McqStageBrowser;
@@ -77,11 +78,20 @@ public class McqDetailActivity extends Activity implements OnNavigateListener {
 		}
 	}
 	
+	@Override
+	public void goToEnd() {
+		startActivity(McqResultActivity.class, getFragment().getStage().getStage());
+	}
+	
 	private void navigate(McqStageBrowser stage) {
-		Intent intent = new Intent(this, McqDetailActivity.class);
+		startActivity(McqDetailActivity.class, stage);
+		finish();
+	}
+	
+	private <T extends Serializable> void startActivity(Class<?> activityClass, T stage) {
+		Intent intent = new Intent(this, activityClass);
 		intent.putExtra("stage", stage);
 		startActivity(intent);
-		finish();
 	}
 
 	private PlaceholderFragment getFragment() {
@@ -240,7 +250,15 @@ public class McqDetailActivity extends Activity implements OnNavigateListener {
 			
 			createButtons(content, stage);
 			
+			updateActivityTitle(stage);
+			
 			return rootView;
+		}
+		
+		private void updateActivityTitle(McqStageBrowser stage) {
+			String t = (String) getActivity().getString(R.string.title_activity_mcq_detail);
+			t += " " + (stage.getNavigationIndex()+1) + "/" + stage.getStage().getNumberOfQuestions();
+			getActivity().getActionBar().setTitle(t);
 		}
 		
 		@Override
@@ -305,9 +323,7 @@ public class McqDetailActivity extends Activity implements OnNavigateListener {
 						navigationListener.goToNext();
 					}
 					if (button.equals(finish)) {
-						Intent intent = new Intent(getActivity(), McqResultActivity.class);
-						intent.putExtra("stage", getStage().getStage());
-						startActivity(intent);
+						navigationListener.goToEnd();
 					}
 				}
 			};

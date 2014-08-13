@@ -1,11 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="lu.ctg.mcq.McqActivity" >
-
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="always"
+        android:menuCategory="container"
+        android:actionLayout="@layout/mcq_chrono"
         android:title="@string/action_settings"/>
         
 </menu>

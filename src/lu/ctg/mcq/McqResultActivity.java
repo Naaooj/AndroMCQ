@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,10 +65,18 @@ public class McqResultActivity extends Activity {
 		@Override
 		public void onViewCreated(View view, Bundle savedInstanceState) {
 			super.onViewCreated(view, savedInstanceState);
+			McqResultActivity activity = (McqResultActivity) getActivity();
 			
-			TextView t = (TextView) getActivity().findViewById(R.id.resultText);
-			McqStage stage = ((McqResultActivity) getActivity()).getStage();
-			t.setText(getString(R.string.mcq_result_score) + stage.getScore() + "/" + stage.getNumberOfQuestions());
+			McqStage stage = activity.getStage();
+			long baseTimer = activity.getIntent().getLongExtra("baseTimer", 0l);
+			long minutes=((SystemClock.elapsedRealtime()-baseTimer)/1000)/60;
+			long seconds=((SystemClock.elapsedRealtime()-baseTimer)/1000)%60;
+			
+			TextView score = (TextView) getActivity().findViewById(R.id.resultText);
+			TextView time = (TextView) getActivity().findViewById(R.id.resultTime);
+			
+			score.setText(getString(R.string.mcq_result_score) + stage.getScore() + "/" + stage.getNumberOfQuestions());
+			time.setText(getString(R.string.mcq_result_score) + (minutes+":"+seconds));
 		}
 	}
 }

@@ -58,6 +58,10 @@ public class McqStageBrowser implements Serializable {
 		navigationIndex--;
 	}
 	
+	public int getNavigationIndex() {
+		return navigationIndex;
+	}
+	
 	private Question getQuestionAtNavigationIndex() {
 		if (navigationIndex < 0 || navigationIndex >= this.stage.getNumberOfQuestions()) {
 			return null;

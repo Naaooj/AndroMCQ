@@ -7,4 +7,5 @@ package lu.ctg.mcq;
 public interface OnNavigateListener {
 	void goToPrev();
 	void goToNext();
+	void goToEnd();
 }

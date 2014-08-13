@@ -18,6 +18,7 @@
     <string name="main_all_loaded">Toutes les questions sont chargées</string>
     <string name="title_activity_mcq_result">Résultats</string>
     <string name="mcq_result_score">Score obtenu : </string>
+    <string name="mcq_result_time">Temps passé : </string>
     <string name="mcq_result_details">Détail</string>
     <string name="mcq_go_to_home">Accueil</string>
     <string name="title_activity_mcq_detail">Détails</string>
