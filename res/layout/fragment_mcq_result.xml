@@ -24,12 +24,13 @@
     <LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
+	    android:layout_marginTop="10dp"
 	    android:orientation="horizontal"
 	    android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/buttonDetails"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="36dp"
             android:onClick="browseDetails"
             android:text="@string/mcq_result_details"
@@ -40,7 +41,7 @@
 
         <Button
             android:id="@+id/buttonNew"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="36dp"
             android:onClick="goToHome"
             android:text="@string/mcq_go_to_home"

@@ -16,8 +16,9 @@ public class McqStage implements Serializable {
 	private static final long serialVersionUID = 1891967305882220374L;
 	
 	private int score = -1;
+	private long time = 0l;
 	final List<Question> questions;
-	final Map<Integer, List<Answer>> answers;
+	private final Map<Integer, List<Answer>> answers;
 	
 	public McqStage(List<Question> questions) {
 		this.questions = questions;
@@ -42,6 +43,14 @@ public class McqStage implements Serializable {
 	
 	public List<Answer> getAnswers(int index) {
 		return this.answers.get(index);
+	}
+	
+	public long getTime() {
+		return this.time;
+	}
+	
+	public void setTime(long time) {
+		this.time = time;
 	}
 	
 	public void addAnswers(int index, Answer...answers) {

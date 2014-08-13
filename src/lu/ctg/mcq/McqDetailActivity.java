@@ -39,11 +39,15 @@ public class McqDetailActivity extends Activity implements OnNavigateListener {
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.mcq_detail, menu);
+		McqStageBrowser stage = getFragment().getStage();
+		menu.getItem(0).setEnabled(stage.isPrev());
+		menu.getItem(1).setEnabled(stage.isNext());
 		return true;
 	}
 	
@@ -228,14 +232,17 @@ public class McqDetailActivity extends Activity implements OnNavigateListener {
 			content.addView(answers);
 			
 			List<AnswerResult> results = stage.getAnswersResults();
+			TextView v = new TextView(getActivity());
+			v.setText(getActivity().getString(R.string.mcq_detail_chosen_answers) + " ");
+			answers.addView(v);
 			for (int i = 0; i < results.size(); ++i) {
-				TextView v = new TextView(getActivity());
+				v = new TextView(getActivity());
 				if (results.get(i).isSuccess()) {
 					v.setTextColor(getResources().getColor(R.color.answer_right));
 				} else {
 					v.setTextColor(getResources().getColor(R.color.answer_wrong));
 				}
-				v.setText((i > 0 ? ", " : "") + results.get(i).getOption().getTextualValue());
+				v.setText((i > 0 ? " " : "") + results.get(i).getOption().getTextualValue());
 				answers.addView(v);
 			}
 			

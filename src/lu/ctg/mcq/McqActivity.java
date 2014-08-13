@@ -122,6 +122,7 @@ public class McqActivity extends Activity implements OnNavigateListener {
 				Question q = stage.getNextQuestion();
 				
 				TextView title = new TextView(getActivity());
+				title.setTextAppearance(getActivity(), R.style.mcq_text_style);
 				title.setText(q.getTitle());
 				
 				content.addView(title);
@@ -211,10 +212,11 @@ public class McqActivity extends Activity implements OnNavigateListener {
 					}
 					if (button.equals(next) || button.equals(finish)) {
 						if (stage != null) {
+							int progression = stage.getProgression();
 							for (CheckBox c : cbs) {
 								if (c.isChecked()) {
 									Answer a = new Answer(c.getId());
-									stage.addAnswers(stage.getProgression(), a);
+									stage.addAnswers(progression, a);
 								}
 							}
 						}

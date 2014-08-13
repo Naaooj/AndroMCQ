@@ -11,7 +11,8 @@
     <string name="main_start_button">Commencer</string>
     <string name="title_activity_mcq">Question</string>
     <string name="mcq_detail_group_question">Question</string>
-    <string name="mcq_detail_group_answer">Réponses</string>
+    <string name="mcq_detail_group_answer">Réponses possibles</string>
+    <string name="mcq_detail_chosen_answers">Réponses choisies :</string>
     <string name="mcq_button_prev">Précédent</string>
     <string name="mcq_button_next">Suivant</string>
     <string name="mcq_button_finish">Terminer</string>

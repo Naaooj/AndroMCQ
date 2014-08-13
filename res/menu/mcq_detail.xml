@@ -7,11 +7,11 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/mcq_button_prev"
-        android:icon="@drawable/back" />
+        android:icon="@drawable/mcq_nav_button_prev" />
 	<item
         android:id="@+id/actionNextDetail"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/mcq_button_next"
-        android:icon="@drawable/next" />
+        android:icon="@drawable/mcq_nav_button_next" />
 </menu>

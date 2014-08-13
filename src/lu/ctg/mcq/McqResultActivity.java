@@ -72,8 +72,14 @@ public class McqResultActivity extends Activity {
 			
 			McqStage stage = activity.getStage();
 			long baseTimer = activity.getIntent().getLongExtra("baseTimer", 0l);
-			long minutes=((SystemClock.elapsedRealtime()-baseTimer)/1000)/60;
-			long seconds=((SystemClock.elapsedRealtime()-baseTimer)/1000)%60;
+			if (baseTimer == 0l) {
+				baseTimer = stage.getTime();
+			} else {
+				baseTimer = SystemClock.elapsedRealtime()-baseTimer;
+				stage.setTime(baseTimer);
+			}
+			long minutes=(baseTimer/1000)/60;
+			long seconds=(baseTimer/1000)%60;
 			
 			TextView score = (TextView) getActivity().findViewById(R.id.resultText);
 			TextView time = (TextView) getActivity().findViewById(R.id.resultTime);

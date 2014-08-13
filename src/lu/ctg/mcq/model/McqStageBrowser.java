@@ -73,6 +73,8 @@ public class McqStageBrowser implements Serializable {
 		Question q = getQuestion();
 		List<Answer> answers = getAnswers();
 		
+		// Map containing for each option the corresponding answer if asnwered, right or wrong
+		// or not if the user didn't choose an answer corresponding to an option
 		Map<Option, Answer> oToA = new HashMap<>();
 		for (Option o : q.getOptions()) {
 			Answer answer = null;
@@ -86,18 +88,19 @@ public class McqStageBrowser implements Serializable {
 		}
 		
 		List<AnswerResult> results = new ArrayList<>();
+		boolean found;
 		for (Entry<Option, Answer> e : oToA.entrySet()) {
-			Answer answer = null;
+			found = false;
 			for (Answer a : q.getAnswers()) {
-				if (a.equals(e.getValue())) {
-					answer = a;
+				// Found an answer corresponding to an option
+				if (a.getValue() == e.getKey().getValue()) {
+					// The user choose the right option
+					found = e.getValue() != null;
 					break;
-				} else if (a.getValue() == e.getKey().getValue()) {
-					results.add(new AnswerResult(a, e.getKey(), false));
 				}
 			}
-			if (answer != null) {
-				results.add(new AnswerResult(answer, e.getKey(), true));
+			if (e.getValue() != null) {
+				results.add(new AnswerResult(e.getValue(), e.getKey(), found));
 			}
 		}
 		
