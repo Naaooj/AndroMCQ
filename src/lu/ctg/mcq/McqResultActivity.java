@@ -1,5 +1,8 @@
 package lu.ctg.mcq;
 
+import java.text.DecimalFormat;
+import java.text.MessageFormat;
+
 import lu.ctg.mcq.model.McqStage;
 import lu.ctg.mcq.model.McqStageBrowser;
 import android.app.Activity;
@@ -75,8 +78,10 @@ public class McqResultActivity extends Activity {
 			TextView score = (TextView) getActivity().findViewById(R.id.resultText);
 			TextView time = (TextView) getActivity().findViewById(R.id.resultTime);
 			
-			score.setText(getString(R.string.mcq_result_score) + stage.getScore() + "/" + stage.getNumberOfQuestions());
-			time.setText(getString(R.string.mcq_result_score) + (minutes+":"+seconds));
+			DecimalFormat f = new DecimalFormat("00");
+			
+			score.setText(MessageFormat.format(getString(R.string.mcq_result_score), stage.getScore() + "/" + stage.getNumberOfQuestions()));
+			time.setText(MessageFormat.format(getString(R.string.mcq_result_time), f.format(minutes), f.format(seconds)));
 		}
 	}
 }
