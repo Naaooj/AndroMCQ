@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
@@ -137,13 +138,27 @@ public class McqActivity extends Activity implements OnNavigateListener {
 			if (stage != null && !stage.isCompleted()) {
 				updateActivityTitle(stage);
 				
-				LinearLayout content = (LinearLayout) rootView;
+				LinearLayout rootContent= (LinearLayout) rootView;
+				ScrollView scrollContent = new ScrollView(getActivity());
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+				scrollContent.setLayoutParams(params);
+				scrollContent.setFillViewport(true);
+				rootContent.addView(scrollContent);
+				
+				LinearLayout content = new LinearLayout(getActivity());
+				params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//				params.weight = 1;
+//				params.height = 0;
+				content.setLayoutParams(params);
+				content.setOrientation(LinearLayout.VERTICAL);
+				scrollContent.addView(content);
 				
 				Question q = stage.getNextQuestion();
 				
 				TextView title = new TextView(getActivity());
 				title.setTextAppearance(getActivity(), R.style.mcq_text_style);
 				title.setText(q.getTitle());
+				title.setFocusable(false);
 				
 				content.addView(title);
 				cbs = new ArrayList<>(q.getOptions().size());
@@ -152,6 +167,7 @@ public class McqActivity extends Activity implements OnNavigateListener {
 					CheckBox c = new CheckBox(getActivity());
 					c.setId(o.getValue());
 					c.setText(o.getText());
+					c.setFocusable(false);
 					c.setOnClickListener(stageClickListener(c, stage));
 					if (i%2==0) {
 						c.setBackgroundColor(getActivity().getResources().getColor(R.color.cb_background_color));
@@ -162,6 +178,8 @@ public class McqActivity extends Activity implements OnNavigateListener {
 				}
 				
 				createButtons(content, stage);
+				
+				content.requestLayout();
 			}
 			
 			return rootView;
@@ -197,6 +215,7 @@ public class McqActivity extends Activity implements OnNavigateListener {
 				next.setBackgroundResource(R.drawable.mcq_button);
 				next.setText(getActivity().getString(R.string.mcq_button_next));
 				next.setOnClickListener(stageClickListener(next, stage));
+				next.setFocusable(false);
 				
 				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 				params.setMargins(5, 0, 5, 0);
@@ -211,6 +230,7 @@ public class McqActivity extends Activity implements OnNavigateListener {
 			finish.setBackgroundResource(R.drawable.mcq_button);
 			finish.setText(getActivity().getString(R.string.mcq_button_finish));
 			finish.setOnClickListener(stageClickListener(finish, stage));
+			finish.setFocusable(true);
 			
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 			params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, getResources().getDisplayMetrics());
