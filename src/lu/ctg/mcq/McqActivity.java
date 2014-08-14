@@ -33,6 +33,7 @@ public class McqActivity extends Activity implements OnNavigateListener {
 	private Chronometer chronometer;
 	private long baseTimer;
 	private long timer;
+	private long pause;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,25 @@ public class McqActivity extends Activity implements OnNavigateListener {
 	@Override
 	public void goToNext() {
 		startActivity(McqActivity.class);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (chronometer != null) {
+			chronometer.stop();
+			pause = SystemClock.elapsedRealtime();
+		}
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (chronometer != null) {
+			baseTimer = chronometer.getBase() + (SystemClock.elapsedRealtime() - pause);
+			chronometer.setBase(baseTimer);
+			chronometer.start();
+		}
 	}
 	
 	@Override
