@@ -115,9 +115,8 @@ public class MainActivity extends Activity implements MultiSpinnerListener {
 			
 			MultiSpinner spinner = (MultiSpinner) getActivity().findViewById(R.id.groupSpinner);
 			if (spinner != null) {
-				spinner.setItems(Arrays.asList(getResources().getStringArray(R.array.mcq_groups)), getString(R.string.mcq_groups_all), (MultiSpinnerListener) getActivity());
+				spinner.setItems(Arrays.asList(getResources().getStringArray(R.array.mcq_groups)), getString(R.string.mcq_groups_all), (MultiSpinnerListener) getActivity(), selected);
 			}
-			
 
 			if (nbrOfQuestions != 0 && nbrOfQuestions != questions.size()) {
 				EditText text = (EditText) getActivity().findViewById(R.id.editText1);

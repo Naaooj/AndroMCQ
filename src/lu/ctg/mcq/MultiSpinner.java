@@ -11,6 +11,12 @@ import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+/**
+ * Code based on http://stackoverflow.com/questions/5015686/android-spinner-with-multiple-choice
+ * Adapted for needs
+ * 
+ * @author Johann Bernez
+ */
 public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener, OnCancelListener {
 
 	private List<String> items;
@@ -32,35 +38,12 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
 	@Override
 	public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-		if (isChecked)
-			selected[which] = true;
-		else
-			selected[which] = false;
+		selected[which] = isChecked;
 	}
 
 	@Override
 	public void onCancel(DialogInterface dialog) {
-		// refresh text on spinner
-		StringBuffer spinnerBuffer = new StringBuffer();
-		boolean someUnselected = false;
-		for (int i = 0; i < items.size(); i++) {
-			if (selected[i] == true) {
-				spinnerBuffer.append(items.get(i));
-				spinnerBuffer.append(", ");
-			} else {
-				someUnselected = true;
-			}
-		}
-		String spinnerText;
-		if (someUnselected) {
-			spinnerText = spinnerBuffer.toString();
-			if (spinnerText.length() > 2)
-				spinnerText = spinnerText.substring(0, spinnerText.length() - 2);
-		} else {
-			spinnerText = defaultText;
-		}
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[] { spinnerText });
-		setAdapter(adapter);
+		setSpinnerAdapter();
 		listener.onItemsSelected(selected);
 	}
 
@@ -78,23 +61,44 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 		return true;
 	}
 
-	public void setItems(List<String> items, String allText, MultiSpinnerListener listener) {
+	public void setItems(List<String> items, String allText, MultiSpinnerListener listener, boolean[] preselected) {
 		this.items = items;
 		this.defaultText = allText;
 		this.listener = listener;
 
-		// all selected by default
-		selected = new boolean[items.size()];
-		for (int i = 0; i < selected.length; i++)
-			selected[i] = true;
-
-		// all text on the spinner
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[] { allText });
+		this.selected = new boolean[items.size()];
+		for (int i = 0; i < selected.length; ++i) {
+			this.selected[i] = preselected != null ? preselected[i] : true;
+		}
+		
+		setSpinnerAdapter();
+	}
+	
+	private void setSpinnerAdapter() {
+		// refresh text on spinner
+		StringBuffer spinnerBuffer = new StringBuffer();
+		boolean allSelected = true;
+		for (int i = 0; i < items.size(); ++i) {
+			if (selected[i]) {
+				if (spinnerBuffer.length() > 0) {
+					spinnerBuffer.append(", ");
+				}
+				spinnerBuffer.append(items.get(i));
+			} else {
+				allSelected = false;
+			}
+		}
+		String spinnerText;
+		if (allSelected) {
+			spinnerText = defaultText;
+		} else {
+			spinnerText = spinnerBuffer.toString();
+		}
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[] { spinnerText });
 		setAdapter(adapter);
 	}
 
 	public interface MultiSpinnerListener {
 		public void onItemsSelected(boolean[] selected);
 	}
-
 }
