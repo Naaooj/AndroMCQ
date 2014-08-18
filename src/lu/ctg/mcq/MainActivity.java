@@ -136,12 +136,8 @@ public class MainActivity extends Activity implements MultiSpinnerListener {
 		}	
 			
 		try {
-			List<Question> questions = getQuestionsRandomly(nbrOfQuestions);
-			
 			CheckBox shuffle = (CheckBox) findViewById(R.id.suffleCb);
-			if (shuffle.isChecked()) {
-				Collections.shuffle(questions);
-			}
+			List<Question> questions = getQuestionsRandomly(nbrOfQuestions, shuffle.isChecked());
 			
 			McqStage stage = new McqStage(questions);
 			
@@ -155,26 +151,38 @@ public class MainActivity extends Activity implements MultiSpinnerListener {
 		}
     }
 	
-	private List<Question> getQuestionsRandomly(int maxNbrOfQuestions) {
+	private List<Question> getQuestionsRandomly(int maxNbrOfQuestions, boolean shuffle) {
 		List<Question> refinedQuestions = refineQuestions();
 		
 		int max = (maxNbrOfQuestions >= refinedQuestions.size() || maxNbrOfQuestions <= 0) ? refinedQuestions.size() : maxNbrOfQuestions;
 		
-		Random rng = new Random();
-		Set<Integer> generated = new HashSet<>();
-		while (generated.size() < max) {
-		    Integer next = rng.nextInt(refinedQuestions.size()) + 1;
-		    generated.add(next);
+		List<Question> selected = new ArrayList<>(max);
+		
+		if (shuffle || max != refinedQuestions.size()) {
+			Random rng = new Random();
+			Set<Integer> generated = new HashSet<>();
+			while (generated.size() < max) {
+			    Integer next = rng.nextInt(refinedQuestions.size()) + 1;
+			    generated.add(next);
+			}
+			
+			for (Integer i : generated) {
+				selected.add(refinedQuestions.get(i-1));
+			}
+		} else {
+			selected.addAll(refinedQuestions); 
 		}
 		
-		List<Question> selected = new ArrayList<>(max);
-		for (Integer i : generated) {
-			selected.add(refinedQuestions.get(i-1));
+		if (shuffle) {
+			Collections.shuffle(selected);
 		}
 		
 		return selected;
 	}
 	
+	/**
+	 * @return a list containing only the questions related to selected groups
+	 */
 	private List<Question> refineQuestions() {
 		List<Question> refinedQuestions = new ArrayList<>();
 		Map<String, List<Question>> groupToQuestions = new TreeMap<>();
